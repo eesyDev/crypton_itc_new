@@ -89,7 +89,7 @@ h1 {
 
 @media screen and (max-width:1300px){
     .main{
-        margin-left: 50px;
+        padding-left: 50px;
     }
 }
 
@@ -247,8 +247,9 @@ h1 {
 }
 
 .coin-links{
-  padding: 0px 20px;
+  /* padding: 0px 20px; */
     flex: 0.5;
+    margin-top: 50px;
 }
 
 .coin-link{
