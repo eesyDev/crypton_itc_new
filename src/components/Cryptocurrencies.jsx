@@ -14,7 +14,6 @@ const Cryptocurrencies = ({ simplified }) => {
     cryptosUpdate(coins?.data?.coins);
   }, [coins]);
 
-  console.log(cryptos)
 
   return (
     <>

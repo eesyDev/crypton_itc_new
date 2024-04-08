@@ -23,7 +23,7 @@ function App() {
             </Routes>
           </div>
         </Layout>
-        <div className="footer">
+        <div className="footer">x
           <Typography.Title level={4} style={{color: '#fff', textAlign: 'center'}}>
             Nurs Crypto Monster <br/> 
             All rights reserved
