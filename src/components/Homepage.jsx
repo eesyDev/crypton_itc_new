@@ -3,8 +3,13 @@ import { Typography, Row, Col, Statistic } from 'antd';
 import { Link } from 'react-router-dom';
 
 import Cryptocurrencies from './Cryptocurrencies';
+import { useGetCryptosQuery } from '../services/cryptoApi';
+import Loader from './Loader';
 
 const Homepage = () => {
+  const { data, isFetching } = useGetCryptosQuery(10);;
+
+  if (isFetching) return(<Loader/>)
   return (
     <>
       <Typography.Title>Global Crypto Stats</Typography.Title>

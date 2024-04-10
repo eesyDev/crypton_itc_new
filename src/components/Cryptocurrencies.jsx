@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Row, Col, Card } from 'antd';
 import { Link } from 'react-router-dom';
+import millify from 'millify';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import Loader from './Loader';
 
 const Cryptocurrencies = ({ simplified }) => {
   const count = simplified ? 10 : 50;
   const { data: coins, isFetching } = useGetCryptosQuery(count);
-
+  const [searchTerm, setSearchTerm] = useState('')
   const [cryptos, cryptosUpdate] = useState([]);
 
   useEffect(() => {
-    cryptosUpdate(coins?.data?.coins);
-  }, [coins]);
+    const filterdCoins = coins?.data?.coins.filter((item) => {
+      return item.name.toLowerCase().includes(searchTerm)
+    })
+    cryptosUpdate(filterdCoins?.length > 0 ? filterdCoins : coins?.data?.coins);
+  }, [coins, searchTerm]);
 
+  if (isFetching) return(<Loader/>)
 
   return (
     <>
     {
       !simplified && (
         <div className='search-crypto'>
-          <Input placeholder='search'/>
+          <Input placeholder='search' onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}/>
         </div>
       )
     }
@@ -33,8 +39,8 @@ const Cryptocurrencies = ({ simplified }) => {
                 title={`${crypto.rank}. ${crypto.name}`}
                 extra={<img className="crypto-image" src={crypto.iconUrl}/>}
               >
-                <p>Price: {crypto.price}</p>
-                <p>Market Cap: {crypto.marketCap}</p>
+                <p>Price: {millify(crypto.price)}</p>
+                <p>Market Cap: {millify(crypto.marketCap)}</p>
                 <p>Daily change: {crypto.change}</p>
               </Card>
             </Link>

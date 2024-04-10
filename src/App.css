@@ -88,21 +88,21 @@ h1 {
 }
 
 @media screen and (max-width:1300px){
-    .main{
+    .main > .ant-layout {
         padding-left: 50px;
     }
 }
 
 @media screen and (max-width:1170px){
-    .main{
-        margin-left: 50px;
+    .main > .ant-layout {
+        padding-left: 50px;
     }
 }
 
 @media screen and (max-width:1000px){
-    .main{
-        margin-left: 100px;
-    }
+    /* .main > .ant-layout {
+        padding-left: 100px;
+    } */
 }
 
 @media screen and (max-width:800px){
@@ -114,12 +114,22 @@ h1 {
     .navbar{
         flex: 1;
     }
+    .navbar-container {
+        height: 8vh;
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+        background-color: var(--bgSecondary);
+    }
 
     .main{
         flex: 1;
         margin-top: 90px;
         margin-left: 0px;
         margin-right: 10px;
+    }
+    .main > .ant-layout {
+        padding-left: 0px;
     }
 
     .nav-container{
