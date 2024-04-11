@@ -9,7 +9,7 @@ export const cryptoNewsApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl : 'https://newsapi.org/v2'}),
     endpoints: (builder) => ({
         getCryptoNews: builder.query({
-            query: (coinName) => createRequest(`/everything?q=${coinName}`),
+            query: (newsName) => createRequest(`/everything?q=${newsName}`),
         }),
     })
 });

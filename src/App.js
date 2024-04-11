@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Link } from 'react-router-dom';
 import { Layout, Typography, Space } from 'antd';
-import { Navbar, Cryptocurrencies, News, Exchanges, Homepage, CryptoDetail } from './components';
+import { Navbar, Cryptocurrencies, News, Exchanges, Homepage, CryptoDetail, NewsDetail } from './components';
 
 import './App.css';
 
@@ -20,10 +20,11 @@ function App() {
               <Route path='/exchanges' element={<Exchanges/>}/>
               <Route path='/cryptocurrencies' element={<Cryptocurrencies/>}/>
               <Route path='/crypto/:coinId' element={<CryptoDetail/>}/>
+              <Route path='/news/:newsId' element={<NewsDetail/>}/>
             </Routes>
           </div>
         </Layout>
-        <div className="footer">x
+        <div className="footer">
           <Typography.Title level={4} style={{color: '#fff', textAlign: 'center'}}>
             Nurs Crypto Monster <br/> 
             All rights reserved
