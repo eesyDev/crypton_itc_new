@@ -1,25 +1,43 @@
 import React, { useState } from 'react';
-import { Col, Row, Select } from 'antd';
+import { Col, Row, Input, Card, Typography } from 'antd';
+import { Link } from'react-router-dom';
 
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
+import Loader from './Loader';
+
+const { Title } = Typography;
 
 const News = () => {
-  const [region, setRegion] = useState('US');
-
-  const { data: newsData } = useGetCryptoNewsQuery('bitcoin')
-  // getCryptoNews(region)
+  const [searchTerm, setSearchTerm] = useState('all')
+  const { data: newsData, isFetching} = useGetCryptoNewsQuery(searchTerm)
   console.log(newsData)
 
-  const regionArr = ['US', 'EU', 'BR', 'AU', 'CA', 'FR', 'DE', 'HK', 'IN']
+  if (isFetching) return(<Loader/>)
 
   return (
-    <Col>
-      <Select className='select-timeperiod' placeholder="Choose a region" onChange={(value) => setRegion(value)}>
-        {
-          regionArr?.map((reg, i) => <Select.Option key={i} value={reg}>{reg}</Select.Option>)
-        }
-      </Select>
-    </Col>
+    <>
+      <Col>
+        <div className='search-crypto'>
+            <Input placeholder='search' onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}/>
+        </div>
+      </Col>
+      <Row gutter={[24, 24]}>
+      {
+        newsData?.articles?.map((article) => (
+          <Col key={article.url} className="crypto-card" xs={24} sm={12} lg={6}>
+            <Link to={`/news/${article.url}`}>
+              <Card
+                title={article.title}
+                extra={<img className="crypto-image" src={article.urlToImage}/>}
+              >
+                <p>{article.description}</p>
+              </Card>
+            </Link>
+          </Col>
+        ))
+      }
+    </Row>
+    </>
   )
 }
 

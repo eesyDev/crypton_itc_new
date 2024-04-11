@@ -39,7 +39,8 @@ const CryptoDetail = () => {
     { title: 'Circulating Supply', value: `$ ${coinDetails?.supply?.circulating && millify(coinDetails?.supply?.circulating)}`, icon: <ExclamationCircleOutlined /> },
   ];
 
-  const { Title, Text } = Typography
+  const { Title, Text } = Typography;
+  const { Option } = Select;
 
   return (
     <Col className='coin-detail-container'>
@@ -49,7 +50,7 @@ const CryptoDetail = () => {
       </Col>
       <Select className='select-timeperiod' placeholder="Choose a timeperiod" onChange={(value) => handleChangePeriod(value)}>
         {
-          timeStamps?.map((date, i) => <Select.Option key={i} value={date}>{date}</Select.Option>)
+          timeStamps?.map((date, i) => <Option key={i} value={date}>{date}</Option>)
         }
       </Select>
       <LineChart coinName={coinDetails?.name} coinHistory={coinHistory} currentPrice={coinDetails?.price}/>

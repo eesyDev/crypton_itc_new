@@ -10,7 +10,7 @@ const cryptoApiHeaders = {
     'X-RapidAPI-Host':  'coinranking1.p.rapidapi.com'
 };
 
-const createRequest = (url) => ({
+const createRequest = (url) => ({ 
     url, headers: cryptoApiHeaders
 });
 
